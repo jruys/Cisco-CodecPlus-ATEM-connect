@@ -13,8 +13,12 @@ function _companion_put(command) {
 }
 
 xapi.event.on('UserInterface Extensions Widget Action', (event) => {
-  if (event.Type === 'pressed') {
-    console.log('I got event.WidgetId: ' + event.WidgetId + ' with event.Type: ' + event.Type);
-    _companion_put(event.WidgetId);
+  if (event.WidgetId.substr(0,12)== 'toCompanion_') {
+    if (event.Type === 'pressed') {
+//      console.log('Length: ' + event.WidgetId.length);
+//      console.log('Substr: ' + event.WidgetId.substr(12));
+      console.log('I got event.WidgetId: ' + event.WidgetId + ' with event.Type: ' + event.Type);
+      _companion_put(event.WidgetId.substr(12));
+    }
   }
 });
